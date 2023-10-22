@@ -4,119 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Podania do klubu</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Klub R</title>
+    <link rel="stylesheet" href="https://cdn.frankerfacez.com/avatar/twitch/203738579">
     <link rel="shortcut icon" href="https://cdn.frankerfacez.com/emoticon/256663/4" type="image/x-icon">
 </head>
 
 <body>
-    <div class="quiz-container">
-        <div class="question">
-            <label for="nick">Podaj swój nick:</label>
-            <input type="text" id="nick">
+    <div class="background">
+        <div class="top-content">
+            <h1>Klub R</h1>
+            <h2>Klub wsparcia dla osób dotkniętych Rasizmem</h2>
         </div>
-        <div class="question hidden">
-            <p>Czy jesteś członkiem rasistą?</p>
-            <label>
-                <input type="radio" id="tak" name="membership" value="tak">
-                Tak i jestem z tego dumny
-            </label>
-            <br>
-            <label>
-                <input type="radio" id="nie" name="membership" value="nie">
-                Nie (tylko jak nikt nie patrzy)
-            </label>
+        <div class="container">
+            <div class="centered">
+                <a href="/podanie.html" class="apply-button">Napisz podanie</a>
+            </div>
         </div>
-        <canvas id="certificateCanvas" class="hidden" width="600" height="400"></canvas>
-        <img src="https://cdn.frankerfacez.com/emoticon/256663/4" id="emoticon" class="hidden">
-        <button id="nextBtn">Dalej</button>
-
-        <script>
-            let currentQuestion = 0;
-            const questions = document.querySelectorAll('.question');
-            const certificateCanvas = document.getElementById('certificateCanvas');
-            const emoticon = document.getElementById('emoticon');
-            const ctx = certificateCanvas.getContext('2d');
-            const nextBtn = document.getElementById('nextBtn');
-
-            function showNextQuestion() {
-                const currentQuestionElement = questions[currentQuestion];
-                const inputElements = currentQuestionElement.querySelectorAll('input[type="text"], input[type="radio"]');
-                let isValid = true;
-
-                if (inputElements) {
-                    inputElements.forEach(input => {
-                        if (input.type === 'text' && input.value.trim() === '') {
-                            isValid = false;
-                        } else if (input.type === 'radio' && !document.querySelector('input[name="membership"]:checked')) {
-                            isValid = false;
-                        }
-                    });
-                }
-
-                if (isValid) {
-                    currentQuestionElement.classList.add('hidden');
-                    currentQuestion++;
-
-                    if (currentQuestion < questions.length) {
-                        questions[currentQuestion].classList.remove('hidden');
-                    } else {
-                        generateCertificate();
-                        nextBtn.classList.add('hidden');
-                        emoticon.classList.add('hidden');
-                    }
-                } else {
-                    console.error('Brak danych')
-                }
-            }
-
-
-            nextBtn.addEventListener('click', showNextQuestion);
-
-            function generateCertificate() {
-                const nick = document.getElementById('nick').value;
-                const membership = document.querySelector('input[name="membership"]:checked').value;
-
-                ctx.fillStyle = 'white';
-                ctx.fillRect(0, 0, certificateCanvas.width, certificateCanvas.height);
-                ctx.font = 'bold 30px Arial';
-                ctx.fillStyle = 'black';
-
-                const titleText = "Certyfikat Klubowicza";
-                const titleTextWidth = ctx.measureText(titleText).width;
-                const titleX = (certificateCanvas.width - titleTextWidth) / 2;
-                ctx.fillText(titleText, titleX, 100);
-
-                const maxTextWidth = 500;
-                ctx.font = 'bold 15px Arial';
-                let infoText = `${nick} należy do klubu ${membership === 'tak' ? 'zasłużonych rasistów arQuela' : 'wsparcia dla osób dotkniętych Rasizmem'}`;
-
-                const infoTextWidth = ctx.measureText(infoText).width;
-                const infoX = (certificateCanvas.width - infoTextWidth) / 2;
-                ctx.fillText(infoText, infoX, 200);
-
-                const emoticonImage = new Image();
-                emoticonImage.src = 'https://cdn.frankerfacez.com/emoticon/256663/4';
-                emoticonImage.onload = function () {
-                    ctx.drawImage(emoticonImage, 10, certificateCanvas.height - emoticonImage.height - 10);
-
-                    ctx.strokeStyle = 'black';
-                    ctx.lineWidth = 2;
-                    ctx.beginPath();
-                    ctx.moveTo(430, 380);
-                    ctx.lineTo(545, 380);
-                    ctx.stroke();
-
-                    ctx.font = 'bold 8px Arial';
-                    ctx.fillStyle = 'black';
-                    ctx.fillText('Miejsce na podpis wodza', 440, 390);
-
-                    certificateCanvas.classList.remove('hidden');
-                };
-            }
-
-
-        </script>
+        <div class="avatar avatar-left">
+            <img src="https://cdn.frankerfacez.com/avatar/twitch/203738579">
+        </div>
+        <div class="avatar avatar-right">
+            <img src="https://cdn.frankerfacez.com/avatar/twitch/203738579">
+        </div>
     </div>
 </body>
 
