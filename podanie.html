@@ -99,16 +99,22 @@
                 emoticonImage.src = 'https://cdn.frankerfacez.com/emoticon/256663/4';
                 emoticonImage.onload = function () {
                     ctx.drawImage(emoticonImage, 10, certificateCanvas.height - emoticonImage.height - 10);
-                };
 
-                const signatureImage = new Image();
-                signatureImage.src = 'podpis.png';
-                signatureImage.onload = function () {
-                    ctx.drawImage(signatureImage, certificateCanvas.width - signatureImage.width - 10, certificateCanvas.height - signatureImage.height - 10);
-                };
+                    ctx.strokeStyle = 'black';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(430, 380);
+                    ctx.lineTo(545, 380);
+                    ctx.stroke();
 
-                certificateCanvas.classList.remove('hidden');
+                    ctx.font = 'bold 8px Arial';
+                    ctx.fillStyle = 'black';
+                    ctx.fillText('Miejsce na podpis wodza', 440, 390);
+
+                    certificateCanvas.classList.remove('hidden');
+                };
             }
+
 
         </script>
     </div>
